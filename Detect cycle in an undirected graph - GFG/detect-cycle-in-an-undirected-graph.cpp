@@ -19,9 +19,8 @@ class Solution {
             visited[temp.first] = true;
             for(int &x : adj[temp.first])
             {
-                if(x == temp.second and visited[x])
-                    continue;
-                else if(visited[x] and x!= temp.second)
+                
+                if(visited[x] and x!= temp.second)
                     return true;
                 else if(!visited[x])
                     q.push({x , temp.first});
