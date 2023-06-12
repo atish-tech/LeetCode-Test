@@ -14,9 +14,8 @@ class Solution {
         
         for(int &x : adj[i])
         {
+            if(visited[x] and fun_visited[x])   return true;
             if(!visited[x] and dfs(x , visited , adj , fun_visited))
-                return true;
-            else if(fun_visited[x])
                 return true;
         }
         fun_visited[i] = false;
