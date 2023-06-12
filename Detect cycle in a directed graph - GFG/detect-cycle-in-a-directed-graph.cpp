@@ -6,35 +6,39 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in a directed graph.
-    
-    bool dfs(int i , vector<bool>&visited , vector<int> adj[] , vector<bool>&fun_visited)
-    {
-        visited[i] = true;
-        fun_visited[i] = true;
-        
-        for(int &x : adj[i])
-        {
-            if(visited[x] and fun_visited[x])   return true;
-            if(!visited[x] and dfs(x , visited , adj , fun_visited))
-                return true;
-        }
-        fun_visited[i] = false;
-        return false;
-    }
-         
-    
     bool isCyclic(int V, vector<int> adj[]) 
     {
-        vector<bool>visited(V , false);
-        vector<bool>fun_visited(V , false);
-        for(int i=0; i<V; i++)
-        {
-            if(!visited[i] and dfs(i , visited , adj , fun_visited))
-            {
-                    return true;
-            }
-        }
-        return false;
+        int in_degree[V] = {0};
+	    int count = V;
+	    
+	    // traversal
+	    for(int i=0; i<V; i++)
+	    {
+	        for(int &x : adj[i])
+	            in_degree[x] += 1;
+	    }
+	    
+	    // indegree 0 push into queue
+	    queue<int>q;
+	    for(int i=0; i<V; i++)
+	        if(in_degree[i] == 0)
+	            q.push(i);
+	   
+	   //Logic
+	   while(!q.empty())
+	   {
+	       int v = q.front();
+	       q.pop();
+	       count--;
+	       for(int &u : adj[v])
+	       {
+	           in_degree[u] -= 1;
+	           if(in_degree[u] == 0)
+	                q.push(u);
+	       }
+	   }
+	   if(count == 0)   return false;
+	   return true;
     }
 };
 
