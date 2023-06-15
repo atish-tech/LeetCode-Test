@@ -21,20 +21,18 @@ class Solution {
         
         vector<int>distance(N , INT_MAX);
         distance[src] = 0;
-        queue<pair<int , int>>q;
-        q.push({src , 0});
+        queue<int>q;
+        q.push(src);
         while(!q.empty())
         {
-            auto temp = q.front();
-            int v = temp.first;
-            int dis = temp.second;
+            int v = q.front();
             q.pop();
             for(int &u : adj[v])
             {
-                if(distance[u] > dis+1)
+                if(distance[u] > distance[v]+1)
                 {
-                    distance[u] = dis+1;
-                    q.push({u , dis+1});
+                    distance[u] = distance[v]+1;
+                    q.push(u);
                 }
             }
         }
