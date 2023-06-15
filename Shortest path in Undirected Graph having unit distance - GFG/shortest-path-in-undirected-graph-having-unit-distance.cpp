@@ -18,7 +18,7 @@ class Solution {
             adj[edges[i][1]].push_back(edges[i][0]);
         }
             
-        
+        // logic
         vector<int>distance(N , INT_MAX);
         distance[src] = 0;
         queue<int>q;
