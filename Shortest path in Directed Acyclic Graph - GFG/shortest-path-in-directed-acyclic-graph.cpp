@@ -8,36 +8,6 @@ using namespace std;
 // User function Template for C++
 class Solution {
   public:
-    vector<int> topoSort(int V, vector<int> adj[]) 
-	{
-	    int in_degree[V] = {0};
-	    vector<int>ans;
-	    // traversal
-	    for(int i=0; i<V; i++)
-	    {
-	        for(int &x : adj[i])
-	            in_degree[x] += 1;
-	    }
-	    
-	    queue<int>q;
-	    for(int i=0; i<V; i++)
-	        if(in_degree[i] == 0)
-	            q.push(i);
-	   
-	   while(!q.empty())
-	   {
-	       int v = q.front();
-	       q.pop();
-	       ans.push_back(v);
-	       for(int &u : adj[v])
-	       {
-	           in_degree[u] -= 1;
-	           if(in_degree[u] == 0)
-	                q.push(u);
-	       }
-	   }
-	   return ans;
-	}
     vector<int> shortestPath(int N,int M, vector<vector<int>>& edges)
     {
         // setup adj list
@@ -49,9 +19,7 @@ class Solution {
             tempAdj[edges[i][0]].push_back(edges[i][i]);
         }
         
-        
-        // vector<int>topo = topoSort(N , tempAdj);
-        
+        // logic
         vector<int>distance(N , INT_MAX);
         distance[0] = 0;
         queue<pair<int , int>>q;
@@ -73,10 +41,9 @@ class Solution {
         }
                 
         for(int i=0; i<N; i++)
-        {
             if(distance[i] == INT_MAX)
                 distance[i] = -1;
-        }
+
         return distance;
     }
 };
