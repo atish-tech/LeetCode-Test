@@ -32,7 +32,7 @@ class Solution {
             int u = it[0];
             int v = it[1];
             int weight = it[2];
-            if(distance[u] != 1e8 and distance[u] + weight < distance[v])
+            if(distance[u] + weight < distance[v])
                 return {-1};
         }
         return distance;
