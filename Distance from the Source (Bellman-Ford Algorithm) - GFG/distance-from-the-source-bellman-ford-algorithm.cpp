@@ -16,24 +16,14 @@ class Solution {
     {
         vector<int>distance(V , 1e8);
         distance[S] = 0;
-        
         for(int i=0; i<V; i++)
-        {
             for(int v=0; v<edges.size(); v++)
-            {
                 if(distance[edges[v][0]] + edges[v][2] < distance[edges[v][1]])
                     distance[edges[v][1]] = distance[edges[v][0]] + edges[v][2];
-            }
-        }
-        
         for(int v=0; v<edges.size(); v++)
-        {
             if(distance[edges[v][0]] + edges[v][2] < distance[edges[v][1]])
                 return {-1};
-        }
-        
         return distance;
-        
         
     }
 };
