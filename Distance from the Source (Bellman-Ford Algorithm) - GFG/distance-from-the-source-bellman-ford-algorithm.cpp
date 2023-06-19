@@ -12,30 +12,29 @@ class Solution {
     *   S: source vertex to start traversing graph with
     *   V: number of vertices
     */
-    vector<int> bellman_ford(int V, vector<vector<int>>& edges, int S) {
-		vector<int>distance(V , 1e8);
+    vector<int> bellman_ford(int V, vector<vector<int>>& edges, int S) 
+    {
+        vector<int>distance(V , 1e8);
         distance[S] = 0;
-        for(int i=0; i<V-1; i++)
+        
+        for(int i=0; i<V; i++)
         {
-            for(auto &it : edges)
+            for(int v=0; v<edges.size(); v++)
             {
-                int u = it[0];
-                int v = it[1];
-                int weight = it[2];
-                if(distance[u] + weight < distance[v])
-                    distance[v] = distance[u] + weight;
+                if(distance[edges[v][0]] + edges[v][2] < distance[edges[v][1]])
+                    distance[edges[v][1]] = distance[edges[v][0]] + edges[v][2];
             }
         }
-        // check for negative cycle
-        for(auto &it : edges)
+        
+        for(int v=0; v<edges.size(); v++)
         {
-            int u = it[0];
-            int v = it[1];
-            int weight = it[2];
-            if(distance[u] + weight < distance[v])
+            if(distance[edges[v][0]] + edges[v][2] < distance[edges[v][1]])
                 return {-1};
         }
+        
         return distance;
+        
+        
     }
 };
 
