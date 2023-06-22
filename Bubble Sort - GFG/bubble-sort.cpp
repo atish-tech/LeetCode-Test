@@ -25,13 +25,16 @@ class Solution
     void bubbleSort(int arr[], int n)
     {
         if(n < 0)   return;
+        bool flag = true;
         for(int i=1; i<n; i++)
         {
             if(arr[i] < arr[i-1])
             {
                 swap(arr[i] , arr[i-1]);
+                flag = false;
             }
         }
+        if(flag)    return;
         bubbleSort(arr , n-1);
     }
 };
