@@ -9,17 +9,15 @@ class Solution{
     void frequencyCount(vector<int>& arr,int N, int P)
     { 
         unordered_map<int , int>m;
+        
         for(int i=0; i<N; i++)
             m[arr[i]]++;
+            
         for(int i=0; i<N; i++)
-        {
             if(m.find(i+1) != m.end())
-            {
                 arr[i] = m[i+1];
-
             else
                 arr[i] = 0;
-        }
     }
 };
 
