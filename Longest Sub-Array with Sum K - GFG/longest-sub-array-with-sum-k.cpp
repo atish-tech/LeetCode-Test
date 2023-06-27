@@ -17,8 +17,8 @@ class Solution{
             sum += A[i];
             if(sum == k)    mLen = max(i+1 , mLen);
             
-            int p = sum - k;
-            if(m.find(p) != m.end())    mLen = max(mLen , i - m[p]);
+            // int p = sum - k;
+            if(m.find(sum - k) != m.end())    mLen = max(mLen , i - m[sum - k]);
             
             if(m.find(sum)  == m.end())     m[sum] = i;
         }
