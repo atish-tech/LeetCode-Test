@@ -12,22 +12,22 @@ class Solution{
     //Function to return length of longest subsequence of consecutive integers.
     int findLongestConseqSubseq(int arr[], int N)
     {
-        sort(arr , arr+N);
-        int count = 1;
+        unordered_set<int>s;
+        for(int i=0; i<N; i++)  s.insert(arr[i]);
+        
+        int count = 0;
         int ans = 0;
-        for(int i=0; i<N-1; i++)
+        for(int i=0; i<N; i++)
         {
-            // cout<<arr[i]<<"  ";
-            if(arr[i] == arr[i+1])  continue;
-            if(arr[i]+1 == arr[i+1])
-                count++;
-            else
+            int n = arr[i]+1;
+            count = 1;
+            while(s.find(n) != s.end())
             {
-                ans = max(ans , count);
-                count=1;
+                n++;
+                count++;
             }
+            ans = max(ans , count);
         }
-        if(ans == 0 or ans < count)    return count;
         return ans;
     }
 };
