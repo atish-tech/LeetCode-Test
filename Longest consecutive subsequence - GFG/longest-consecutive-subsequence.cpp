@@ -19,14 +19,17 @@ class Solution{
         int ans = 0;
         for(int i=0; i<N; i++)
         {
-            int n = arr[i]+1;
-            count = 1;
-            while(s.find(n) != s.end())
+            if(s.find(arr[i]-1) == s.end())
             {
-                n++;
-                count++;
+                int n = arr[i]+1;
+                count = 1;
+                while(s.find(n) != s.end())
+                {
+                    n++;
+                    count++;
+                }
+                ans = max(ans , count);
             }
-            ans = max(ans , count);
         }
         return ans;
     }
